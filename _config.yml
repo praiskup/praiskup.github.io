@@ -1,0 +1,21 @@
+title: Pavel's Blog
+email: pavel@raiskup.cz
+description: >
+  FLOSS, right?
+
+url: https://raiskup.cz/blog/
+
+github_username: praiskup
+
+permalink: /blog/:title.html
+
+disqus:
+  shortname: praiskup-blog
+
+# Build settings
+markdown: kramdown
+
+theme: minima
+
+plugins:
+  - jemoji
