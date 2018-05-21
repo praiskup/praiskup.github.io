@@ -3,6 +3,9 @@ email: pavel@raiskup.cz
 description: >
   FLOSS, right?
 
+# TODO: could /blog/ work too?
+blog: /blog.html
+
 url: https://raiskup.cz/blog/
 
 github_username: praiskup
