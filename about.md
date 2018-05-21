@@ -5,7 +5,7 @@ permalink: /contact/
 comments: true
 ---
 
-Pavel Raiskup, sofware engineer, hacker, package maintainer.  DIY guy.
+Pavel Raiskup, software engineer, hacker, package maintainer.  DIY guy.
 
 * [github](https://github.com/praiskup)
 * [linkedin](https://www.linkedin.com/in/pavel-raiskup)
