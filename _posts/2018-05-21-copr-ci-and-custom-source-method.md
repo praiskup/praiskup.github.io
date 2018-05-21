@@ -19,11 +19,11 @@ Copr][ref-copr].
 
 Consider you want to build some RPM package for each change in
 [upstream][ref-upstream-def] VCS repository, or consider you want to have an RPM
-repository in hand which provides the bleeding edge (git) version of the RPM(s)
-in question.  Copr build-system is the natural tool for such task nowadays,
-but...  Also assume that the project development (of which you might or might
-not be part of) is conservative enough to not accept changes specific to
-Copr build-system.  It means you probably want to use the Custom source method.
+repository in hand which provides the bleeding edge (git) version of some
+RPM(s).  Copr build-system is the natural tool for such task nowadays, but...
+Also assume that the project development (of which you might or might not be
+part of) is conservative enough to not accept changes specific to Copr
+build-system.  It means you probably want to use the Custom source method.
 
 In this post, I'll work with [GNU tar][ref-tar] project using Autoconf.  Mainly
 because adding support for RPM oriented tools like
@@ -44,11 +44,11 @@ do that on Savannah), you can live fine without GitHub and still stay focused
 
 ## The Solution: packaging CI/CD with Copr
 
-Quick overview:  **First** we'll create a script for building the SRPM
-sources from (remote) git repo, **then** we'll setup a new Copr project `tar-ci`
-and **define** new Copr package named `tar` inside which will be built by the
-prepared script. **Last**, we'll setup the automatic rebuilds triggered by
-upstream git repository changes.
+Quick overview:  First we'll **create a script** for building the SRPM sources
+from (remote) git repo, then we'll **setup a new Copr project** named `tar-ci`,
+and in that project we'll **define a new Copr package** named `tar` (built by
+the script).  **Last**, we'll setup the automatic rebuilds triggered by upstream
+git repository changes.
 
 
 ### Script that generates the sources
