@@ -57,7 +57,7 @@ This is the script I'll use for SRPM builds from [the repo][ref-myfork]:
 
 {% highlight bash %}
 $ cat ./get-tar-sources.sh
-{% include_relative scripts/2018-05-21-get-tar-sources.sh %}
+{% include_relative scripts/copr-get-tar-sources.sh %}
 {% endhighlight %}
 
 Note the optional part.  It's there to precisely pair particular git commits

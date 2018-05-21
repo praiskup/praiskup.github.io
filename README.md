@@ -1,1 +1,1 @@
-Source code for https://blog.raiskup.cz/
+Source code for https://raiskup.cz/
