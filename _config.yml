@@ -6,8 +6,6 @@ description: >
 # TODO: could /blog/ work too?
 blog: /blog.html
 
-url: https://raiskup.cz/blog/
-
 github_username: praiskup
 
 permalink: /blog/:title.html
