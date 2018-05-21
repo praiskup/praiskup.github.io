@@ -82,7 +82,7 @@ and CentOS 7 distributions (`--chroot` options).  Make sure to have all the
 dependencies for building sources installed (`--script-builddeps` option).
 And spin-up the first build:
 
-```
+{% highlight terminal %}
 $ copr create tar-ci --chroot fedora-rawhide-x86_64 --chroot epel-7-x86_64
 New project was successfully created.
 
@@ -99,7 +99,8 @@ Watching build(s): (this may be safely interrupted)
   12:52:42 Build 755916: pending
   12:53:13 Build 755916: running
   13:18:36 Build 755916: succeeded
-```
+
+{% endhighlight %}
 
 Since the build succeeded, apparently the `--script` works fine.  Now what
 remains is to setup automatic builds.
