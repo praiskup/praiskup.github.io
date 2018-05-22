@@ -5,6 +5,8 @@ description: >
 
 blog: /blog/
 
+google_analytics: UA-119698614-1
+
 github_username: praiskup
 
 permalink: /blog/:title.html
