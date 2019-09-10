@@ -60,6 +60,8 @@ you can enjoy the schema capabilities in your code (e.g. the property
 message API -- so once you use that, your code will continue to work even if we
 eventually changed the plain text json message format in future.
 
+For more info about Copr messagies API see [documentation][rtfd].
+
 Notice!  At the time of writing this blog post, users still can listen on fedmsg
 (as [Mirek blogged about it][old-blog]) because there's the
 fedmsg-to-fedora-messaging proxy, but everyone should make sure to move soon.
@@ -70,3 +72,4 @@ fedmsg-to-fedora-messaging proxy, but everyone should make sure to move soon.
 [copr]: https://pagure.io/copr/copr
 [old-blog]: http://miroslav.suchy.cz/blog/archives/2014/03/21/how_to_get_notification_about_your_builds_in_copr/index.html
 [schemas]: https://pagure.io/copr/copr/blob/master/f/messaging
+[rtfd]: https://copr-messaging.rtfd.io
