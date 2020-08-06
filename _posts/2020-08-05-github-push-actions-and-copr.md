@@ -58,7 +58,7 @@ jobs:
 
       - name: Install API token for copr-cli
         env:
-          API_TOKEN_CONTENT: $\{{ secrets.COPR_API_TOKEN }}
+          API_TOKEN_CONTENT: ${\{ secrets.COPR_API_TOKEN }}
         run: |
           mkdir -p "$HOME/.config"
           echo "$API_TOKEN_CONTENT" > "$HOME/.config/copr"
