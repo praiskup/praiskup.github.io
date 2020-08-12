@@ -23,10 +23,10 @@ computational power, and the format of defining Actions (or “workflows”) is
 
 # Setup the CI for GitHub push events
 
-First go to the GitHub project you maintain, and:
+First, go to the GitHub project you maintain, and:
 
-1. Go to *Settings* menu.
-2. Go to *Actions* sub-menu.
+1. Go to the *Settings* menu.
+2. Go to the *Actions* sub-menu.
 3. Toggle the *Enable local and third party Actions for this repository* radio
    button option.  This is needed to successfully run external
    `actions/checkout@v1` action.
@@ -75,7 +75,7 @@ jobs:
         run: copr build praiskup/argparse-manpage-ci rpm/*.src.rpm
 {% endhighlight %}
 
-This is a simple example (or template) that needs a custom tweaks, namely
+This is a simple example (or template) that needs some custom tweaks, namely
 packages and commands needed to build source RPM.  But it is indeed
 [enough in practice][deployment].
 
