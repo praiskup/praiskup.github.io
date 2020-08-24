@@ -1,8 +1,7 @@
 ---
 layout: post
 title:  Submit Copr builds by GitHub “push” actions
-date:   2020-08-05 00:00:00 +0000
-draft:  true
+date:   2020-08-24 00:00:00 +0000
 lang:   en
 ---
 
