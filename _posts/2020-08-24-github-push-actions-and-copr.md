@@ -6,14 +6,14 @@ lang:   en
 ---
 
 Since [my last on-topic post][ci-cd-travis] (mostly about GitHub's
-third-party CI provider [Travis CI][travis]) another alternative for submitting
+third-party CI provider [Travis CI][travis]), another alternative for submitting
 RPM builds in Copr appeared on GitHub -- [GitHub Actions][actions-introduced].
 
 Let's admit this fact now:  From our perspective, GitHub Actions do not
 bring anything new into the game.  Namely, we have Turing-complete language
-(good) and we still can not store **private tokens** (Copr API token, e.g.)
-which could be [used securely at the pull-request time][github-problem] (bad,
-especially for Open Source projects).
+(good) and we still can not store **private tokens** (needed e.g. for Copr API
+token) that could be [used securely at the pull-request time][github-problem] -
+that's bad, especially for Open Source projects.
 
 But, yes, at least we don't have to use a third-party application for
 computational power, and the format of defining Actions (or “workflows”) is
