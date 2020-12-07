@@ -3,7 +3,6 @@ layout: post
 title:  What is Lorem Ipsum?
 date:   2000-01-01 00:00:00 +0000
 lang:   en
-draft:  true
 ---
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
