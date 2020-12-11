@@ -111,19 +111,19 @@ soon as batch II. finishes which is likely to happen sooner (see the screenshot
 below).
 
 
-Submitting the builds
---------------------
+Submit the batch builds
+-----------------------
 
 Copr packages can be built using Tito command directly from the default upstream
 branch, therefor we use `buildscm` method:
 
 {% highlight shell %}
 # first build python-copr-common
-copr buildscm --subdir common   copr-project-name --nowait --method tito_test --clone-url https://pagure.io/copr/copr.git
+copr buildscm --subdir common copr-project-name --nowait --method tito_test --clone-url https://pagure.io/copr/copr.git
 Created build: 1823602
 
 # build python-copr once python-copr-common is built
-copr buildscm --subdir python   copr-project-name --nowait --after-build-id 1823602 --method tito_test --clone-url https://pagure.io/copr/copr.git
+copr buildscm --subdir python copr-project-name --nowait --after-build-id 1823602 --method tito_test --clone-url https://pagure.io/copr/copr.git
 Created build: 1823603
 
 # build server packages + rpmbuild after python-copr-common
@@ -131,15 +131,15 @@ copr buildscm --subdir frontend copr-project-name --nowait --after-build-id 1823
 Created build: 1823604
 copr buildscm --subdir dist-git copr-project-name --nowait --with-build-id 1823604 --method tito_test --clone-url https://pagure.io/copr/copr.git
 Created build: 1823605
-copr buildscm --subdir keygen   copr-project-name --nowait --with-build-id 1823604 --method tito_test --clone-url https://pagure.io/copr/copr.git
+copr buildscm --subdir keygen copr-project-name --nowait --with-build-id 1823604 --method tito_test --clone-url https://pagure.io/copr/copr.git
 Created build: 1823606
 copr buildscm --subdir rpmbuild copr-project-name --nowait --with-build-id 1823604 --method tito_test --clone-url https://pagure.io/copr/copr.git
 Created build: 1823607
 
 # and once python-copr is built (and copr-common), build backend and cli
-copr buildscm --subdir cli      copr-project-name --nowait --after-build-id 1823603 --method tito_test --clone-url https://pagure.io/copr/copr.git
+copr buildscm --subdir cli copr-project-name --nowait --after-build-id 1823603 --method tito_test --clone-url https://pagure.io/copr/copr.git
 Created build: 1823608
-copr buildscm --subdir backend  copr-project-name --nowait --with-build-id 1823608 --method tito_test --clone-url https://pagure.io/copr/copr.git
+copr buildscm --subdir backend copr-project-name --nowait --with-build-id 1823608 --method tito_test --clone-url https://pagure.io/copr/copr.git
 Created build: 1823609
 {% endhighlight %}
 
@@ -148,8 +148,8 @@ The batches tab then looks like (after a few minutes):
 
 ![chained batches](/images/build-ordering-by-batches/batches.png)
 
-Note that *batch 3125 (IV.)* is already being processed while the batch III. is
-not yet finished.
+Note that *batch 3125 (IV.)* is already being processed while the *batch 3124
+(III.)* is not yet finished.
 
 Discussion
 ----------
