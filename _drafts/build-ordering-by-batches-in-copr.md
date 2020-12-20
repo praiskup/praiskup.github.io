@@ -9,10 +9,10 @@ lang: en
 we initially thought.  So let me go a little bit into detail and explain the
 feature on a practical example.
 
-The Copr command line tool has now two options `--after-build-id` and
+The Copr command-line tool now has two options `--after-build-id` and
 `--with-build-id` in **all the build commands** (like `copr build`, `copr
 build-package`, `buildscm`, `build-dist-git`, ..).  The feature is also exposed
-in the web-UI, but it's far less convenient so we'll avoid the web-UI today.
+in the web-UI, but it's far less convenient, so we'll avoid the web-UI today.
 
 
 The problem
@@ -28,7 +28,7 @@ The components are:
 - `python-copr-common` - common tooling, helpers, all of our packages depend on
   this, except for clients
 - `python-copr` - this is a client Python API that maps user requests to REST
-  API, and allows a communication with the `copr-frontend`.
+  API, and allows communication with the `copr-frontend`.
 - `copr-cli` - command-line client, transforms command-line requests to
   the Python API
 - `copr-frontend`, `copr-frontend`, `copr-dist-git`, `copr-keygen` - these are
@@ -44,7 +44,7 @@ The build-dependency graph looks like:
 Some of those packages need to built sooner than others (so others can install
 and use them at build time).
 
-User can of course submit the build for the main `python-copr-common` packages,
+A user can of course submit the build for the main `python-copr-common` packages,
 wait for the build, submit others, wait, submit, ... but nowadays we want to
 submit everything **at once**, and later come to grab the build results.
 
@@ -55,10 +55,10 @@ Even though the new options accept **build IDs** arguments, Copr actually
 operates with batches of builds where such batch can be represented by
 **any batch member** (any contained build ID).
 
-You can compose a tree (or rather forest) of such build batches, meaning that
+You can compose a tree (or rather a forest) of such build batches, meaning that
 each batch can be blocked by exactly **one** other *parent* batch.
 
-Batches can only be in `blocked`, `processing` or `finished` state.  Batch is
+Batches can only be in `blocked`, `processing`, or `finished` state.  Batch is
 `blocked` when *parent* batch is `processing` -- and switches to `processing`
 when *parent* goes to the `finished` state.  At the time of writing this post,
 we [still][proposal] don't take *failed* builds differently from *succeeded* or
@@ -70,12 +70,12 @@ together  with the `BUILD_ID` (at the same time, if possible, on different
 builder machines).  Effectively it puts those builds into the same batch.
 
 The other `--after-build-id BUILD_ID` option OTOH always creates a new batch for
-the new build, and makes sure that the new build is blocked by the batch of
+the new build and makes sure that the new build is blocked by the batch of
 builds with the `BUILD_ID`.
 
 Since we allow build-dependencies across Copr projects, the set of builds in one
 batch tree (or even in one batch) **can belong to multiple Copr projects**.  The
-only limitation is that user who tries to put the build into an existing batch
+only limitation is that the user who tries to put the build into an existing batch
 (`--with-build-id`) needs to have the *builder* permissions for at least one of
 the Copr projects that are already part of that batch.  Still, anyone can chain
 their own builds with others' batches using `--after-build-id` option.
@@ -101,7 +101,7 @@ long till everything else finishes.  And the dependency is only `python-copr`.
 Tree approach (faster)
 -------------------------
 
-Better option is to split the task into four batches:
+A better option is to split the task into four batches:
 
 ![chained batches](/images/build-ordering-by-batches/tree.png)
 
@@ -156,7 +156,7 @@ Discussion
 
 Sometimes it would be convenient if one batch could depend on multiple batches,
 not just one.  This is not yet implemented (patches are welcome!).  In such
-situation users should tend to fall-back to more chained-like approach, even if
+situation, users should tend to fall-back to the more chained-like approach, even if
 it is the slower variant (the right order must be guaranteed).
 
 Because it is quite some typing to run all the commands, some script that
