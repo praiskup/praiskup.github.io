@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Order your Copr builds using batches
-date: 2020-12-10 00:00:00 +0000
+date: 2020-12-21 00:00:00 +0000
 lang: en
 ---
 
