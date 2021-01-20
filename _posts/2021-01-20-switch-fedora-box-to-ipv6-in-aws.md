@@ -13,6 +13,10 @@ started Fedora Cloud VMs** (at the time of writing this article I work with
 Fedora 33 where is `cloud-init-19.4-7.fc33.noarch`), I struggled to instruct
 *cloud-init* to **re-configure** the existing IPv4-only network.
 
+Note!  Of course you first have to assign the IPv6 address in AWS (e.g. in
+web-UI -> the instance -> its networking interface config -> Actions -> Manage
+IP addresses -> Assign new IP address (ipv6)).
+
 The only solution that worked for me was to use manual configuration.  This was
 useful-workaround, at least till the old instances can be replaced with fresh
 ones (when they'd be replaced with Fedora 34 or 35).
