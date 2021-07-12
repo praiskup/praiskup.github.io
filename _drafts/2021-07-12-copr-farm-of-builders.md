@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Feodora Copr farm of builders - status of July 2021
+title:  Fedora Copr farm of builders - status of July 2021
 date:   2021-07-12 00:00:00 +0000
 lang:   en
 ---
@@ -13,7 +13,7 @@ status" paragraph if you just want to see the numbers.
 The history
 -----------
 
-Initially we had some hardware and custom scripts for starting VMs there.
+Initially, we had some hardware and custom scripts for starting VMs there.
 
 Then we had a Fedora-infra OpenStack cloud with x86\_64 and ppc64le
 architecture support, those days it was living on fedorainfracloud.org
@@ -29,19 +29,19 @@ account.  The migration started late in 2019 (when we began starting
 builder VMs in AWS) and finished in [Feb 2020][aws-migration-outage] (when
 the infrastructure, like frontend, backend, etc. was moved).
 
-A big benefit of the move to AWS was that we newly got a native support
+A big benefit of the move to AWS was that we newly got native support
 for the aarch64 architecture (only x86\_64 and aarch64 are available in
 AWS).  But we lost the ppc64le architecture, as those OpenStack
-hypervisors were shut down.  AWS also gave us possibility to scale
-horizontally, so in peak situations we handled about 120 concurrent
+hypervisors were shut down.  AWS also gave us a possibility to scale
+horizontally, so in peak situations, we handled about 120 concurrent
 builds.
 
-The transition to AWS brought several approaches, namely we didn't have
+The transition to AWS brought several approaches, namely, we didn't have
 the only source of computational power -- we had two (AWS and OpenStack,
 at least for the transition period).  At that time we started using the
 [Resalloc server][resalloc] for (pre)allocating VMs.
 
-The use of Resalloc server is nicer for VM quota, we don't have to start
+The use of the Resalloc server is nicer for VM quota, we don't have to start
 all the VMs in advance when they are not used.  The server keeps just some
 of the VMs pre-allocated (so new builds don't wait till the VM is started)
 and is able to allocate more when needed.
@@ -50,13 +50,13 @@ Later, `fedorainfracloud.org` OpenStack was [finally
 discontinued][openstack-shutdown], and till now we don't have any
 OpenStack in hand.
 
-During the last few months, we Fedora Infra folks began racking the
+During the last few months, Fedora Infra folks began racking the
 machines from the old OpenStack cloud into a new RDU lab.  It allows us to
-finally install them, and gives us an opportunity to grow again on those
-"in-house" machines.  We already finished installation of four x86\_64
+finally install them and gives us an opportunity to grow again on those
+"in-house" machines.  We already finished the installation of four x86\_64
 boxes (one died in the meantime and is waiting for HW service) and we
 managed to start 20 builder VMs on each of those machines (so we have
-additional 60 x86\_64 builders now).
+an additional 60 x86\_64 builders now).
 
 The fact we have those builders now, we don't have to depend on that many
 builders in AWS.  So first - we decreased the maximum numbers of AWS
@@ -74,7 +74,7 @@ The current status
 - from 6 to 30 Spot aarc64 builders (6 always preallocated)
 
 This gives us from 93 to 188 machines, depending on the current
-utilization (the more machines is used, the more is started).
+utilization (the more machines are used, the more are started).
 
 
 Future plans
@@ -92,16 +92,16 @@ It means that there will be +30 (on the fixed box) and +3x10 x86\_64
 builders (120 in-house in total) - so it will decrease the AWS budget a
 bit more.
 
-The current implementation of Resalloc server pre-allocates virtual
-machines, and delegates the Copr build tasks there by random.  This is
-though a economically sub-optimal process - we should instead primarily
+The current implementation of the Resalloc server pre-allocates virtual
+machines, and delegates the Copr build tasks there randomly.  This is
+an economically sub-optimal process though - we should instead primarily
 use the in-house builders (the cheapest power), then Spot instances, and
 only if all are taken - take the most expensive On-Demand instances.
 We'll implement this prioritization soon.
 
 We are currently discussing possibilities around the **s390x**
 architecture, and also we have two **aarch64** boxes that could be racked
-to do native **armhfp** builds.  So eventually, we could get a native
+to do native **armhfp** builds.  So eventually, we could get native
 support for all the architectures supported by Fedora - even though this
 is not yet certain/near future.
 
