@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Fedora Copr farm of builders - status of July 2021
-date:   2021-07-12 00:00:00 +0000
+date:   2021-07-13 00:00:00 +0000
 lang:   en
 ---
 
