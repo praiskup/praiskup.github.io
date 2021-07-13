@@ -63,6 +63,10 @@ builders in AWS.  So first - we decreased the maximum numbers of AWS
 builders and second - we also migrated the rest instances from On-demand
 to [Spot][spot] (about 30% of On-Demand price).
 
+The most recent news is that during the last week we finally enabled one of the
+Power8 machines (former OpenStack, too) that gives us now a set of 15 concurrent
+ppc64le builders.
+
 
 The current status
 ------------------
@@ -72,6 +76,7 @@ The current status
 - from 20 to 60 Spot x86\_64 AWS builders
 - from 2 to 8 On-Demand aarch64 AWS builders (2 always preallocated)
 - from 6 to 30 Spot aarc64 builders (6 always preallocated)
+- 15 ppc64le builder machines
 
 This gives us from 93 to 188 machines, depending on the current
 utilization (the more machines are used, the more are started).
@@ -80,11 +85,11 @@ utilization (the more machines are used, the more are started).
 Future plans
 ------------
 
-We should get two Power8 machines soon (one is already racked, one is
-WIP).  By a rough guess, this should give us about 40 ppc64le builders (We
-tweaked the thin-provisioning setup on the LibVirt level,
-overcommitted RAM, so we get much more builder machines than before on
-OpenStack).
+We should have another Power8 machine installed soon.  By a rough guess, this
+should give us another set of 15 ppc64le builders (We tweaked the
+thin-provisioning setup on the LibVirt level, overcommitted RAM, so we should
+get more builder machines than before on OpenStack).  We will probably consider
+raising the limit from 15 to 20 builders.
 
 One x86\_64 hypervisor should get HW vendor service.   We also believe
 that we should handle another +10 builders more on each x86 hypervisor.
