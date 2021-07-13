@@ -78,8 +78,8 @@ The current status
 - from 6 to 30 Spot aarc64 builders (6 always preallocated)
 - 15 ppc64le builder machines
 
-This gives us from 93 to 188 machines, depending on the current
-utilization (the more machines are used, the more are started).
+This gives us from 108 to 203 machines, depending on the current utilization
+(the more machines are used, the more are started).
 
 
 Future plans
