@@ -37,15 +37,15 @@ Fedora Copr runs in N. Virginia region, so the [on-demand price][cost] is:
 How to check the spot pricing?  Log into the AWS web UI => go to "EC2" category
 => Open collapsible "Instances" menu on the left side => "Spot Requests" =>
 press "Pricing history" in the right top corner => search the instance types,
-see the history of spot price.
+see the history of spot price:
 
-- *$0.0468*/h for *i3.large*, about **70% savings**
+- *$0.0468*/h for *i3.large*, about **70% savings** against on-demand
 - *$0.0336*/h for *a1.xlarge* + *$0.022*/h for the volume (nothing changes
   here) = *$0.0556*/h, that is **45% savings**
 
-Despite the fact that most of the demand goes to x86 architecture, we have about
-50:50 x86 vs. arm ratio in AWS.  That's because we have our own in-house
-x86 hypervisors that provide additional power.
+Despite the fact that most of the demand is for the x86 architecture, we have
+about 50:50 x86 vs. arm ratio in AWS.  That's because we have our own in-house
+x86 hypervisors that provide additional computational power.
 
 
 How do we start them?
