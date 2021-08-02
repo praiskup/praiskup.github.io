@@ -9,9 +9,10 @@ AWS spot/on-demand Copr builders
 ================================
 
 Most of the builders we use nowadays in AWS are started in the [spot
-tenancy][spot].  The reason is simple - they are significantly cheaper, and it isn't a
-big problem when some builder machine gets suddenly terminated (if that happened
-we simply start a new VM that will re-try the build task).
+tenancy][spot].  The reason is simple - they are significantly cheaper than
+[on-demand][on-demand], and it isn't a big problem when some builder machine
+gets suddenly terminated (if that happened we simply start a new VM that will
+re-try the build task).
 
 We still keep also several complementary "on-demand" builders just in case there
 was some spot request allocation outage.  Admittedly, this has not happened to us
@@ -102,3 +103,4 @@ expect).
 [cron]: https://pagure.io/fedora-infra/ansible/blob/25dd4678194c08228ed96c977b402892c402343b/f/roles/copr/backend/files/cleanup-vms-aws-resalloc
 [strings]: https://pagure.io/fedora-infra/ansible/blob/25dd4678194c08228ed96c977b402892c402343b/f/roles/copr/backend/files/provision/spinup_aws_task.yml#_28
 [spot]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html
+[on-demand]: https://aws.amazon.com/ec2/pricing/on-demand/
