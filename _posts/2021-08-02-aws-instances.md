@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  AWS spot/on-demand Copr builders
-date:   2021-07-27 00:00:00 +0000
+date:   2021-08-02 00:00:00 +0000
 lang:   en
 ---
 
