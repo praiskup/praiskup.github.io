@@ -16,7 +16,7 @@ we simply start a new VM that will re-try the build task).
 We still keep also several complementary "on-demand" builders just in case there
 was some spot request allocation outage.  Admittedly, this has not happened to us
 so far - probably because we set the maximum spot price circa on the level of
-on-demand price, and our builders are usually run for a short time only.
+the on-demand price, and our builders are usually run for a short period of time.
 
 
 Pricing
@@ -39,9 +39,9 @@ How to check the spot pricing?  Log into the AWS web UI => go to "EC2" category
 press "Pricing history" in the right top corner => search the instance types,
 see the history of spot price.
 
-- *$0.0468*/h for *i3.large*, about 70% savings
+- *$0.0468*/h for *i3.large*, about **70% savings**
 - *$0.0336*/h for *a1.xlarge* + *$0.022*/h for the volume (nothing changes
-  here) = *$0.0556*/h, that is 45% savings
+  here) = *$0.0556*/h, that is **45% savings**
 
 Despite the fact that most of the demand goes to x86 architecture, we have about
 50:50 x86 vs. arm ratio in AWS.  That's because we have our own in-house
@@ -68,14 +68,15 @@ in the inventory.
 Caveats
 -------
 
-Sometimes, some AWS subnet locations may be unavailable (outage) so we [randomly
-pick][choosing-subnet] so - when this happens - resalloc just stops the attempt
-re-tries by random in a different location.
+Because some AWS subnet (lab) locations may be temporarily unavailable (outage)
+we [randomly pick][choosing-subnet] from a predefined set of subnets;  So when
+this happens Resalloc just stops and re-tries the allocation in a different
+location.
 
-The good thing on the Ansible approach is that we can "declaratively" describe
-the machine to be started, and it "just works".  The bad thing is that the
-starting process isn't 100% under our control, and sometimes the playbook fails
-while the resource stays in some intermediate (but still running, and thus
+The good thing on this Ansible approach is that we can "declaratively" describe
+the machine to be started, and it usually "just works".  The bad thing is that
+the starting process isn't 100% under our control, and sometimes the playbook
+fails while the resource stays in some intermediate (but still running, and thus
 charged) state in AWS.  So, we have also a [cron job][cron] doing periodic
 cleanups.
 
