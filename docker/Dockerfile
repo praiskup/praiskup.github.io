@@ -1,4 +1,4 @@
-FROM fedora:33
+FROM fedora:35
 
 RUN dnf install -y \
     /usr/bin/gem \
@@ -16,7 +16,10 @@ RUN dnf install -y \
     /usr/bin/nc \
     && dnf clean all
 
-RUN gem install jekyll github-pages
+RUN gem install \
+    github-pages \
+    jekyll \
+    webrick
 
 COPY starter /starter
 COPY tinyproxy.conf /etc/tinyproxy/tinyproxy.conf
