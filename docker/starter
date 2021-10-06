@@ -1,0 +1,13 @@
+#! /bin/bash -x
+
+# We start Jekyll on the port 5000, even though we expose port 4000 in
+# Dockerfile (the normal default port of local Jekyll).  The problem is that
+# Jekyll doesn't seem to accept connections elsewhere than on 127.0.0.1, which
+# is not the case when Podman container is accessed from host:
+# https://github.com/jekyll/jekyll/issues/8846
+
+bundler exec jekyll serve --drafts --port 5000 --detach
+
+# Execute tinyproxy, which allows connections from 0.0.0.0, and redirects the
+# container's 4000 port to Jekyll's 5000.
+tinyproxy -d

@@ -11,13 +11,19 @@ RUN dnf install -y \
     ruby-devel \
     rubygem-eventmachine \
     rubygem-ffi \
+    tinyproxy \
     zlib-devel \
+    /usr/bin/nc \
     && dnf clean all
 
 RUN gem install jekyll github-pages
 
-RUN mkdir /the-jekyll-root
+COPY starter /starter
+COPY tinyproxy.conf /etc/tinyproxy/tinyproxy.conf
+
+RUN mkdir /the-jekyll-root && \
+    chmod 755 /starter
 
 EXPOSE 4000
 
-CMD cd /the-jekyll-root && bundler exec jekyll serve --drafts
+CMD cd /the-jekyll-root && /starter
