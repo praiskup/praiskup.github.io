@@ -80,8 +80,13 @@ packages and commands needed to build source RPM.  But it is indeed
 
 Having Actions as a 1:1 alternative for Travis CI, feel free to read the [old
 post][ci-cd-travis].   You can implement the very same work-flow using Github
-Actions (perhaps for pull-requests, too).  But this post provided a lot simpler,
-a "starter", Actions example.
+Actions (perhaps for pull-requests, too).
+
+Edit by 2021-11-26: Travis CI is starting to be very painful to use for FLOSS
+projects, therefore the [argparse-manpage pull-request CI][pr-ci] was eventually
+[moved][2021-change] from Travis CI to GitHub Actions.
+
+But this post provided a lot simpler, a "starter", Actions example.
 
 Happy building!
 
@@ -91,4 +96,6 @@ Happy building!
 [github-problem]: https://github.community/t/make-secrets-available-to-builds-of-forks/16166/31
 [actions-introduced]: https://github.blog/2018-10-17-action-demos/
 [copr-api]: https://copr.fedorainfracloud.org/api/
-[deployment]: https://github.com/praiskup/argparse-manpage/blob/master/.github/workflows/push-copr-build.yml
+[deployment]: https://github.com/praiskup/argparse-manpage/blob/958322bf33773c3dc962e5c0a2596001c0a9abc1/.github/workflows/push-copr-build.yml
+[pr-ci]: https://github.com/praiskup/argparse-manpage/tree/master/.github/workflows
+[2021-change]: https://github.com/praiskup/argparse-manpage/pull/38
