@@ -62,7 +62,7 @@ deployment.
 packager, and Fedora tooling contributor.
 
 **[RPM Packaging for Beginners][pkgworkshop]** (lector).  Periodic (3/year)
-course/workshop for RPM newbies within Red Hat Brno.
+course/workshop for Red Hat colleagues who start with RPM packaging.
 
 Smaller projects/worth noting:
 
