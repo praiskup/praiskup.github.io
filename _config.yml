@@ -1,5 +1,5 @@
 ---
-title: Pavel's Blog
+title: Pavel's Space
 email: pavel@raiskup.cz
 description: >
   FLOSS, right?
@@ -24,3 +24,7 @@ plugins:
   - jemoji
 
 exclude: [testing-container]
+
+header_pages:
+  - cv.md
+  - about.md

@@ -1,8 +1,8 @@
 ---
-layout: empty
+layout: default
 title: ""
 ---
 
 ## Pavel Raiskup
 
-[blog]({{ site.blog }})
+Nothing here, yet.  Continue to my [blog]({{ site.blog }}).
