@@ -4,6 +4,7 @@ title: Profile/CV
 permalink: /cv/
 order: 1
 comments: false
+geometry: margin=3cm
 ---
 
 # Pavel Raiskup
