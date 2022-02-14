@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Profile/CV
+title: Profile
 permalink: /cv/
 order: 1
 comments: false
