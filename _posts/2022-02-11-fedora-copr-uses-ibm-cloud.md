@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  IBM Z machines in Fedora Copr
+title:  IBM Cloud and IBM Z machines in Fedora Copr
 date:   2022-02-11 00:00:00 +0000
 lang:   en
 ---
@@ -49,13 +49,11 @@ maintain a large package(s)!).
 Working with the QCOW2 images in IBM Cloud
 ------------------------------------------
 
-TL;DR, cloud-init-based, even the default Fedora `s390x` QCOW2 images are
-supported!
+TL;DR, cloud-init-based, even the default Fedora `s390x` QCOW2 images work!
 
 When preparing a custom image, one can spawn a fresh machine, modify it
-accordingly (e.g. with Ansible) and then snapshot it.  This approach was
-breaking subscription-manager on Fedora VMs (a very specific use-case so far, in
-Y2022), see below.
+accordingly (e.g. with Ansible) and then snapshot it.  This approach broke
+subscription-manager, see below.
 
 But fortunately, we observed we can run our guestfish scripting on
 the `s390x` virtual machines (normally we need to run those scripts on a
@@ -66,7 +64,7 @@ The generated QCOW2 image file needs to be uploaded into the S3 bucket, and then
 a new IBM Cloud "image" is created from that bucket.  Unfortunately, the
 `ibmcloud-vpc` library lacks the support for this.  The web UI doesn't help much
 either (even if you can afford to spend a few manual clicks), because there's
-a "200 MB" [upload limit][upload-limit] (and **our** images are >= 500MB).
+a "200 MB" [upload limit][upload-limit].
 
 Therefore we use the official ([not yet open][ibmcloud-cli-request]) `ibmcloud`
 utility.  To simplify our automation, we use this [image][s390x-image]
@@ -96,7 +94,7 @@ Several notable things before you start.
 4. If you need subscription-manager, be careful with snapshots.  When a snapshot
    image is generated in IBM Cloud, some very weird, not-GPG-signed,
    katello-related package is installed automatically into the snapshot image.
-   It breaks RHSM.  This problem is still to be reported.
+   It breaks RHSM (at least on Fedora).  This problem is still to be reported.
 
 5. Uploading images is not very straight-forward on Fedora.
 
