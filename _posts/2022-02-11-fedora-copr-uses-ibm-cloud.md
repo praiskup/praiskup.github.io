@@ -102,7 +102,7 @@ Conclusion
 ----------
 
 The s390x support in IBM Cloud, controlled via Python API (with some tweaks with
-/bin/ibmcloud) seems very solid.  Things work fine for us, (mostly) since
+`/bin/ibmcloud`) seems pretty solid.  Things work fine for us, (mostly) since
 the beginning.  We run from 6 up to 18 VMs there (s390x, z13) with 2xCPU,
 4G RAM, and plenty of swap space.
 
