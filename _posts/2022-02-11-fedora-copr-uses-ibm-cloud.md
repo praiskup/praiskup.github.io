@@ -79,16 +79,16 @@ Problems spotted
 Several notable things before you start.
 
 1. Fedora SSO has not been implemented so far, one needs to create
-   the user+password access assigned to a concrete SIG's e-mail.
+   the user+password access assigned to a Fedora SIG's e-mail.
 
 2. Occasionally the cloud leaks some resources.  We had to create two tickets so
-   far to clean up some stuff, as we couldn't do it ourselves (4 images, and one
-   instance).
+   far to clean up some stuff because we couldn't clean ourselves (4 images, and
+   one instance).
 
 3. The "OS type" category for Fedora 35 is missing.  One can upload a Fedora F35
-   image (or even a Rawhide), but the metadata will claim it is Fedora 34 at
-   best (you can pick RHEL).  I filled a ticket for this, but it is WONTFIX
-   (adding a new OS type is not possible till at least one of the officially
+   image (or even Rawhide), but the metadata will claim it is Fedora 34 at
+   best (or you can pick RHEL).  I filled a ticket for this, but it is WONTFIX
+   (adding a new OS type is not possible until at least one of the officially
    supported images is also of that OS type)
 
 4. If you need subscription-manager, be careful with snapshots.  When a snapshot
