@@ -18,41 +18,41 @@ Linux, Rocky Linux, ...).
 
 Some time ago we added [support for Subscription Manager][mock-rhel-chroots] to
 the [Mock tool][mock].  But not many EPEL contributors are aware of this, and
-only [until recently][deployed-to-copr] this feature has not been used in any
+only [until recently][deployed-to-copr], this feature has not been used in any
 "production" code.
 
 
 The current Copr status and configuration
 -----------------------------------------
 
-The Copr builders are a "cloud" machines, spawned from a VM image, kept working
-for a while and then destroyed.  Thus any Red Hat subscription needs to be
+The Copr builders are "cloud" machines, spawned from a VM image, kept working
+for a while, and then destroyed.  Thus any Red Hat subscription needs to be
 automatically taken, and automatically destroyed:
 
 1. We use a very insistent [snippet][subscribe-script] for taking subscriptions.
    Yes, from time to time the attempt to subscribe or attach a subscription
    fails and we can not afford such a failure because a lot of time was already
    spent on starting the VM, and would be completely wasted.  This is also a
-   reason why we don't use [Ansible community general module][ansible-subscription]
+   reason why we don't use the [Ansible community general module][ansible-subscription]
    that turned out to be extremely unreliable from this perspective.
 
-2. We also [try the best to unregister][unsubscribe-script] the VM before we
+2. We also [try our best to unregister][unsubscribe-script] the VM before we
    delete it.
 
 3. Because we start thousands of machines every day, we can not blindly rely on
-   the flawlessness of the step 2 (unregistering may fail, but also some small
+   the flawlessness of step 2 (unregistering may fail, but also some small
    percentage of our builders die without letting us know what happened).
    Therefore we also install a [cron job][cron-job] (run
-   [twice per our][cron-install]) that automatically removes the leftover
+   [twice per hour][cron-install]) that automatically removes the leftover
    entitlements (automatically lists the remaining systems, and subscriptions
    for systems that appear to be already deleted are also deleted, using the
    [RHSM API][rhsm-api]).
 
-When the system is registered (see the step 1. above), Mock is able to lift up
+When the system is registered (see step 1. above), Mock is able to lift up
 the generated PEM certificates and properly work with the official RHEL
 repositories hosted in Red Hat's CDN—as configured in the ``mock-core-configs``
 package (see ``rpm -ql mock-core-configs | grep rhel``, and related
-[docs][mock-rhel-chroots], we in particular rely on ``/etc/mock/rhel+epel-8*``
+[docs][mock-rhel-chroots], we, in particular, rely on ``/etc/mock/rhel+epel-8*``
 files for the `epel-8-x86_64` chroots).
 
 
@@ -60,9 +60,9 @@ Conclusion
 ----------
 
 Copr is trying the best to be as close as possible to the end-user perspective,
-doing mostly what user would do with mock locally (this way we get the reports
+doing mostly what the user would do with mock locally (this way we get the reports
 that "something is broken" in Mock or Copr really fast).  And this small RHSM
-step allowed us to make the EPEL builds in Koji, Copr and local Mock builds
+step allowed us to make the EPEL builds in Koji, Copr, and local Mock builds
 (even though [only optional][mock-pr]) much, much close to each other.  Till now
 it seems to be working well!  Feel free to try ``mock -r rhel-8-x86_64``
 yourself.
