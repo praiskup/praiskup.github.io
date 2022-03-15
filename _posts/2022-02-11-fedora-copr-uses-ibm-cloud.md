@@ -37,8 +37,9 @@ a [single API call][floating-api-call], even though not available in the Python
 API).  The script is automatically [executed][resalloc-config]
 [by Resalloc][resalloc-config-2].
 
-The s390x architecture is only supported in **Tokyo** in IBM Cloud, locations
-(`jp-tok-1`, `jp-tok-2` and `jp-tok-3`).  A bit far away from the rest of the
+The s390x architecture is only supported in ~~Tokyo in IBM Cloud, locations
+(`jp-tok-1`, `jp-tok-2` and `jp-tok-3`).  A bit (Edit 2022-03-15)~~ Tokyo, São
+Paulo and London, all pretty far away from the rest of the
 Copr infrastructure (hosted in North Carolina mostly), though things seem to
 work pretty fine (the heavy network stuff goes through mirrored DNF
 repositories).  We just need to get the package sources to the builder machine,
