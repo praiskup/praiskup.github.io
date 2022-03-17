@@ -12,10 +12,8 @@ geometry: margin=3cm
 **Hacker, engineer, maintainer, designer, team leader, DevOps, CI/CD addict, DIY
 person.**
 
-I am not proactively searching for jobs, but I'm not against interesting
-opportunities.  I can appreciate perspective projects, good (SW) design,
-supportive automation, ambitious folks, no obfuscation, and natural knowledge
-sharing.
+I can appreciate perspective projects, good (SW) design, supportive automation,
+ambitious folks, no obfuscation, and natural knowledge sharing.
 
 Current role: Senior Software Engineer, team/tech lead for the Community
 Packaging Tools team, Red Hat, Inc. (Brno office).
