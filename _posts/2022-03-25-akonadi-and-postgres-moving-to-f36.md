@@ -6,7 +6,7 @@ lang: en
 
 These Akonadi updates are "mostly" fluent on Fedora nowadays.  At least for the
 several previous releases.  But I sometimes need to think a bit during the
-upgrade, and **do some manual steps**.  Steps that I'm not completely sure I
+upgrade and **do some manual steps**.  Steps that I'm not completely sure I
 would be able to do, without my previous PostgreSQL packaging maintenance
 experience.  So let me reconstruct the latest upgrade from Fedora 35 to Fedora
 36.
@@ -26,15 +26,15 @@ experienced any major problems).
 
 I gave some answers to the tool, the upgrade started (I calmly continued with my
 normal daily work), after about 30 minutes some problems with libraries appeared
-(old RPMs and thus libraries started disappearing).  Finally I answered some of
-the Y/N questions, and rebooted.
+(old RPMs and thus libraries started disappearing).  Finally, I answered some of
+the Y/N questions and rebooted.
 
 The problems with Akonadi upgrade
 =================================
 
 KMail started to shout at me that Akonadi is not working;  so from previous
-experience, I immediately correctly guessed that there's something is wrong with
-the PostgreSQL backend (upgraded from v13 to v14 this time).  Hurry up to
+experience, I immediately correctly guessed that there was something wrong
+with the PostgreSQL backend (upgraded from v13 to v14 this time).  Hurry up to
 command-line:
 
     $ akonadictl start
@@ -110,7 +110,7 @@ Then re-trying:
     2022-03-22 10:55:36.766 CET [14842] FATAL:  database files are incompatible with server
     [repeating the previous error]
 
-Looked better, but still failed.  Without obvious reason why.  Per
+Looked better, but still failed.  Without an obvious reason why.  Per
 *"pg_upgrade finished with exit code 1 , please run migration manually"*,
 I tried:
 
@@ -167,10 +167,10 @@ the major PG upgrade).  Our case is not a system-default service but one started
 by Akonadi (under my UID, not `postgres=26`).
 
 So, this *"The source cluster was not shut down cleanly"* means here that there's
-a leftover lock/pid file in the data directory, and PG upgrade would probably
-simply recover after the lockfile removal.  But since we have already have PG 13
-installed (the postgresql-upgrade package), we can be more careful and let PG
-fix this for us:
+a leftover lock/pid file in the data directory, and the PG upgrade would probably
+simply recover after the lockfile removal.  But since we have have PG 13
+installed (the postgresql-upgrade package), we can be more careful and let the
+PG itself fix this for us:
 
     $ /usr/lib64/pgsql/postgresql-13/bin/pg_ctl start -D /home/praiskup/.local/share/akonadi/db_data/
     waiting for server to start....
