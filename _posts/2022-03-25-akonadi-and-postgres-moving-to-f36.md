@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Migrating Akonadi data in PostgreSQL after upgrade to Fedora 36
+title: Migrating Akonadi+PostgreSQL to Fedora N+1
 lang: en
 ---
 
