@@ -21,7 +21,7 @@ Packaging Tools team, Red Hat, Inc. (Brno office).
 
 # Key interests
 
-GNU/Linux, cloud tech, containers, system programming, software
+GNU/Linux, cloud tech, containers/microservices, system programming, software
 compilation, integration and distribution, package maintenance, debugging and
 bug-fixing.
 
