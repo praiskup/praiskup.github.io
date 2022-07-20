@@ -5,13 +5,13 @@ date:   2022-07-18 00:00:00 +0000
 lang:   en
 ---
 
-Red Hat Enterprise Linux 9 [deprecated SHA-1][sha1kb] for security reasons for
-package signing.  However, it is still used by many for signing packages.  I
-will discuss typical problems users may face (and ways around), Fedora status
+Red Hat Enterprise Linux 9 [deprecated SHA-1 for signing][sha1kb] for security
+reasons.  However, it is still used by many for signing packages.  I will
+discuss typical problems users may face (and ways around), Fedora SHA-1 status
 and how you can alter your infrastructure to use a more secure SHA-256.
 
 
-## Users struggle
+## Infra mistakes → user struggles
 
 While the default security policy might refuse SHA-1 all over the system, the
 problem we discuss today looks like:
@@ -39,41 +39,43 @@ problem we discuss today looks like:
     You can remove cached packages by executing 'dnf clean packages'.
     Error: GPG check FAILED
 
-Per the warning/error above, DNF on RHEL 9 refuses to install the package.  The
-reason is that RPM is unable to validate the SHA-1 signature.
+Per the warning/error above, DNF on RHEL 9 refuses to install the package.  DNF
+is told to check signatures (DNF configuration `gpgcheck=1`) but the package
+signature hash algorithm is SHA-1.  RPM is forbidden to even check it, on
+system-level crypto layer.
 
-For the record, preparations for this change started even on RHEL 8.  You can
-experiment with similar setup even on RHEL 8 system, just try:
+## Can this happen on RHEL 8 or older?
+
+No, at least not by default.  The packaging stack on Enterprise Linux 8 (and
+older) accepts SHA-1 signatures without complaints.  Potential troubles can occur
+when doing in-place upgrades from RHEL 8 to the RHEL 9 system, even though the
+Red Hat upgrade tool LEAPP should at least [issue a warning][kb-leapp] in
+advance.
+
+Preparation for this change though started on RHEL 8.  Actually, if you want to
+experiment on RHEL 8, you can bring the configuration from the future:
 
     # update-crypto-policies --set FUTURE
 
 
-## Why are packages signed by SHA1 in 2022?
+## Why are packages signed by SHA-1 in 2022?
 
-The official packages for RHEL and Fedora distributions are signed with SHA256
-for a very long time (all supported versions).
+The official packages for RHEL and Fedora distributions are signed with SHA-256
+for a very long time (all the currently supported distribution versions).
 
-The problem might though be with third-party packages.  SHA1 is the default hash
-algorithm for `rpmsign` on Enterprise Linux 7.  Also, the default hash algorithm
-in [OBS signd is still SHA1][obs-defaults].  So many third-party package
-providers still unconsciously use deprecated signatures.
-
-
-## Any problems on RHEL 8 and older?
-
-The packaging stack on Enterprise Linux 8 (and older) accepts SHA1 signatures
-without complaints.  Potential troubles can occur when doing in-place upgrades
-to the RHEL 9 system, even though Red Hat upgrade tool LEAPP should at least
-[issue a warning][kb-leapp] in advance.
+The problem is with third-party packages.  SHA-1 is the default hash algorithm
+for the `rpmsign` utility on Enterprise Linux 7.  Also, the default hash
+algorithm in [OBS signd is still SHA-1][obs-defaults].  So many third-party
+package providers might still unconsciously use SHA-1 signatures.
 
 
-## State of Fedora SHA1 deprecation
+## State of Fedora SHA-1 deprecation
 
-In this case, Enterprise Linux has been moved earlier than Fedora.  At the time
-of RHEL 9 release, the latest released Fedora version was 36, and actually (at
-the time of writing this post) switching fedora is
+In this case, Enterprise Linux has been moved forward earlier than Fedora.  At
+the time of RHEL 9 release, the latest released Fedora version was 36, and
+actually (at the time of writing this post) switching Fedora policy is
 [planned for Fedora 39][fedora-change] (about +18 months after the RHEL 9
-release).  Still, if you want to experiment with such a setup on Fedora there
+release).  Still, if you want to experiment with such a setup on Fedora, there
 exists a special policy (Fedora 36+):
 
     # update-crypto-policies --set TEST-FEDORA39
@@ -98,33 +100,37 @@ The expected failure can then be tested with:
     Error: GPG check FAILED
 
 
-## How to sign packages?
+## How am I supposed to sign packages, then?
 
-Third party package providers should switch to `SHA256`.  With `rpmsign`, one
-can edit the `%__gpg_sign_cmd` macro (copied from `/usr/lib/rpm/macros`) and add
-`--digest-algo sha256 ` option explicitly, e.g. in `~/.rpmmacros`:
+Please switch to SHA-256 (or SHA-512).  With the `rpmsign` utility, one option
+is to move he signing host to a newer distro than RHEL 7.
+
+One can also modify the `%__gpg_sign_cmd` macro (copy-pasted from the
+`/usr/lib/rpm/macros` file) so it contains the `--digest-algo sha256 ` option.
+Can be done in the `~/.rpmmacros` file:
 
     %__gpg_sign_cmd                 %{__gpg} \
             gpg --batch --no-verbose --no-armor --passphrase-fd 3 \
             %{?_gpg_digest_algo:--digest-algo %{_gpg_digest_algo}} \
-            --no-secmem-warning --digest-algo sha256 \
+            --no-secmem-warning \
+            --digest-algo sha256 \
             -u "%{_gpg_name}" -sbo %{__signature_filename} %{__plaintext_filename}
 
 For more info take a look at [signing KB article][kb-signing].  With OBS signd,
 there's `sign -h sha256` [option][obs-sign-man].
 
 
-## I still want to install SHA1 signed package!
+## I still want to install SHA-1 signed package!
 
 This is discouraged.  Even a signature from a years old RPM could be hacked
 recently by an attacker.  If you **really** know what you are doing, there's a
 possibility to use `dnf --nogpgcheck` option.
 
-Alternatively you can also switch to the legacy policy:
+Alternatively you can also switch to the legacy crypto policy:
 
     update-crypto-policies --set LEGACY
 
-Or explicitly allow the SHA1:
+Or explicitly allow the SHA-1:
 
     update-crypto-policies --set DEFAULT:SHA1
 
@@ -132,6 +138,15 @@ But please don't forget to switch back, e.g.:
 
     update-crypto-policies --set DEFAULT
 
+
+## Next steps
+
+You know how to install SHA-1 signed packages (when really necessary and you
+understand the security consequences).  But please don't forget to report to
+your software provider that the SHA-1 problem exists!
+
+From the other side, administrators, please fix your infrastructure.  Make the
+SW distribution chain fluent again.  Then forget about this post.
 
 [sha1kb]: https://access.redhat.com/articles/6846411
 [obs-defaults]: https://github.com/openSUSE/obs-sign/issues/34
