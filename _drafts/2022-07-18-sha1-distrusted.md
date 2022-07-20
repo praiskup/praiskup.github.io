@@ -47,13 +47,13 @@ system-level crypto layer.
 ## Can this happen on RHEL 8 or older?
 
 No, at least not by default.  The packaging stack on Enterprise Linux 8 (and
-older) accepts SHA-1 signatures without complaints.  Potential troubles can occur
-when doing in-place upgrades from RHEL 8 to the RHEL 9 system, even though the
-Red Hat upgrade tool LEAPP should at least [issue a warning][kb-leapp] in
-advance.
+older) accepts SHA-1 signatures without complaints.  Potential problems can
+occur during in-place upgrades from RHEL 8 to the RHEL 9 system.  Please pay
+attention to the [warnings issued by LEAPP][kb-leapp].
 
-Preparation for this change though started on RHEL 8.  Actually, if you want to
-experiment on RHEL 8, you can bring the configuration from the future:
+Preparation for this crypto policy change though started on RHEL 8.  Hence if
+you want to experiment even on RHEL 8, you can bring the configuration from the
+future RHEL by:
 
     # update-crypto-policies --set FUTURE
 
