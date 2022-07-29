@@ -12,9 +12,15 @@ layout: default
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
+        {% if post.external_url %}
+        <h2>
+          <a class="post-link" href="{{ post.external_url }}">{{ post.title | escape }}</a>
+        </h2>
+        {% else %}
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
         </h2>
+        {% endif %}
       </li>
       {% endunless %}
     {% endfor %}
