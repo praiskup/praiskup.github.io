@@ -15,7 +15,7 @@ person.**
 I can appreciate perspective projects, good (SW) design, supportive automation,
 ambitious folks, no obfuscation, and natural knowledge sharing.
 
-Current role: Senior Software Engineer, team/tech lead for the Community
+Current role: Principal Software Engineer, team/tech lead for the Community
 Packaging Tools team, Red Hat, Inc. (Brno office).
 
 
@@ -117,7 +117,14 @@ Red Hat OpenShift maintenance.
 
 # Work history
 
-*Apr 2019 — present*, **Senior Software Engineer**, team leader, Red Hat, Inc.
+*Oct 2022 — present*, **Principal Software Engineer**, team leader, Red Hat, Inc.
+Community Packaging Tools team — operating and developing two Copr build system
+instances with terabytes of RPM content, Mock development and maintenance (the
+underlying, low-level building tool used by Copr and Koji), and several other
+tools.  Coordinating integration of Copr with [Packit][packit], and consulting
+the architecture.
+
+*Apr 2019 — Sep 2022*, **Senior Software Engineer**, team leader, Red Hat, Inc.
 Completely moved to Copr team, later named Community Packaging Tools team.
 Giving up *most* of the package maintenance responsibilities and concentrating on
 Copr development.  Became the Mock maintainer (mock is the underlying, low-level
