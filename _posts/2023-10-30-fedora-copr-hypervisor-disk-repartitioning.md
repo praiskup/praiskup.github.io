@@ -308,8 +308,7 @@ possibility to migrate Volume Groups (VGs) across Physical Volumes (PVs).
 21. **Fix GRUB:**
 
     Note that we moved the `/` volume from one MD to another.  This required
-    changing the kernel cmdline (NB I managed to cause headaches on one of the
-    hypervisors by omitting this step 😖).
+    changing the kernel cmdline.
 
     We also removed the non-existing `resume=/dev/mapper/vg_guests-swap` swap
     partition.  We can't hibernate now, but we never needed or tried anyway.
@@ -326,7 +325,9 @@ possibility to migrate Volume Groups (VGs) across Physical Volumes (PVs).
     `grub2-mkconfig` on a few of the hypervisors, too.  Not sure why.  Make sure
     you double-check the `/boot/grub2/grubenv` config is correct, the same as
     `/etc/default/grub` or `/etc/sysconfig/grub`, etc.  Perhaps some
-    modifications are needed (you really risk losing your remote box).
+    modifications are needed — **you really risk losing your remote box** (NB I
+    myself managed to cause headaches on one of the hypervisors by omitting this
+    whole step 😖).
 
 22. **Double-check:**
 
