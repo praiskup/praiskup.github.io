@@ -8,9 +8,9 @@ lang: en
 The Fedora Copr storage hosts (beginning of Y2024) approximately 33TB of
 data (RPM repositories and RPM files).  The data is stored on a Fedora
 server, utilizing a [rather complicated lvm+raid setup][raid], all hosted
-on AWS EC2, typically hidden behind CDN (AWS CloudFront).  Modifying this
-setup and further maintenance is non-trivial (adding new arrays of disks
-into LVM, migrating the box to new Fedora releases, etc).
+on AWS EC2, typically hidden behind CDN ([AWS CloudFront][cloudfront]).
+Modifying this setup and further maintenance is non-trivial (adding new arrays
+of disks into LVM, migrating the box to new Fedora releases, etc).
 
 We'd like to use something that auto-scales long-term, either something
 like Amazon EFS (seems more expensive compared to our current setup) or S3
@@ -45,9 +45,9 @@ The migration time
 ------------------
 
 We'll start with a new hostname related to the PULP server.  We are not
-sure whether we'll use the PULP built-in HA, CloudFront, or both.
-Initially, we'll begin moving a small set of projects, and the
-`copr-be.cloud.fp.o` box will have to start redirecting
+sure whether we'll use the [PULP built-in HA][pulp-arch],
+[CloudFront][cloudfront], or both.  Initially, we'll begin moving a small set of
+projects, and the `copr-be.cloud.fp.o` box will have to start redirecting
 (some) requests to them to, e.g., `pulp.copr.fp.o`.  You may wonder if
 this "redirection" is supported by DNF5, DNF, and YUM customers — it is
 (tested even on CentOS 6).
@@ -85,3 +85,5 @@ stay tuned for further updates!
 [copr-backend-cdn]: https://download.copr.fedorainfracloud.org/results/
 [example-repo]: https://copr.fedorainfracloud.org/coprs/g/copr/copr/repo/fedora-rawhide/group_copr-copr-fedora-rawhide.repo
 [raid]: https://pagure.io/fedora-infra/ansible/blob/5d5ec547ea386c3636f59b99e0546f10788705f1/f/inventory/group_vars/copr_back_aws#_51-59
+[pulp-arch]: https://docs.pulpproject.org/pulpcore/components.html
+[cloudfront]: https://aws.amazon.com/cloudfront/
