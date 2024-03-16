@@ -54,7 +54,7 @@ this "redirection" is supported by DNF5, DNF, and YUM customers — it is
 
 Migrated Copr projects will provide updated `.repo` files (like
 [this][example-repo]), pointing to the PULP hostname.  So, when users
-start consuming project content, e.g. with `dnf copr enable`, their
+start consuming project content, e.g., with `dnf copr enable`, their
 machines will not have to follow the redirects!
 
 ![how things get redirected during migration time](/images/pulp-content-hosting/migration.png)
@@ -74,8 +74,11 @@ old `.repo` file installations.
 Bad idea?
 ---------
 
-Please let us know if you have any concerns or questions.  Otherwise, just
-stay tuned for further updates!
+The primary motivation for this flow is to ensure the smoothest possible
+experience throughout all phases (repositories available all the time).
+
+Please let us know if you have any concerns or questions.  Otherwise, just stay
+tuned for further updates!
 
 
 [tracker]: https://github.com/fedora-copr/copr/issues/2533
