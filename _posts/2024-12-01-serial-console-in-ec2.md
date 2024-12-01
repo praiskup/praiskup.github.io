@@ -76,17 +76,24 @@ Watch the systemd logs over SSH:
     [  OK  ] Removed slice system-systemd\x2dzr…- Slice /system/systemd-zram-setup.
     ...
 
-<!--
-Prolong grub2 timeout
----------------------
+Make grub2 menu available
+-------------------------
 
-    $ vim /etc/default/grub                 # change the $GRUB_TIMEOUT
+Currently there's a [problem with Grub in EC2](https://bugzilla.redhat.com/show_bug.cgi?id=2329760),
+but in general you would be doing something like:
+
     $ cp /boot/grub2/grub.cfg /var/tmp/     # backup
+    $ grub2-editenv - unset menu_auto_hide  # https://fedoraproject.org/wiki/Changes/HiddenGrubMenu
+    $ vim /etc/default/grub                 # change the $GRUB_TIMEOUT
     $ grub2-mkconfig > /boot/grub2/grub.cfg # re-generate
     $ vim -d /boot/grub2/grub.cfg /var/tmp/grub.cfg  # review!
 
-TODO: Problem from https://fosstodon.org/@praiskup/113557853677016655
--->
+You might notice a problem that I did, [systemd disallows reboot over EC2
+console][systemd], not reported for now.  The EC2 console has no "send
+ctrl+alt+delete" button, nor an on-screen keyboard.  You can't send
+`ctrl+alt+delte` over the SSH-console.  SysRq is disabled of course (by
+default).  Could we have something like `ctrl+R` for rebooting?  Not sure.
 
 [sc]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/troubleshoot-using-serial-console.html
 [ms]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
+[systemd]: https://fosstodon.org/@praiskup/113557853677016655
