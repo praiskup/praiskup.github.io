@@ -84,6 +84,8 @@ Prolong grub2 timeout
     $ cp /boot/grub2/grub.cfg /var/tmp/     # backup
     $ grub2-mkconfig > /boot/grub2/grub.cfg # re-generate
     $ vim -d /boot/grub2/grub.cfg /var/tmp/grub.cfg  # review!
+
+TODO: Problem from https://fosstodon.org/@praiskup/113557853677016655
 -->
 
 [sc]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/troubleshoot-using-serial-console.html
