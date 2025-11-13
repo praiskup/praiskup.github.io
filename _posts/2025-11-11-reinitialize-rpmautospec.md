@@ -64,7 +64,7 @@ Double-check
 Check that rpmautospec works by:
 
 {% highlight shell %}
-$ rpmautospec --debug process-distgit *spec
+$ rpmautospec --debug process-distgit *spec *spec
 ===========================================================
 Extracting linear history snippets from branched history...
 ===========================================================
