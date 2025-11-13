@@ -116,7 +116,8 @@ $ git diff
 Please note the `release_number = 5` line and the version-release of the last
 `%changelog` entry—that's what we needed.
 
-Now, use `git checkout -p` to reset the local Git changes (effects of `process-distgit`).  Done.
+Use `git checkout -p` to reset the changes made to the spec file by the previous
+`rpmautospec process-distgit` call. Done.
 
 [rpmautospec]: https://github.com/fedora-infra/rpmautospec
 [norpm]: https://github.com/fedora-infra/rpmautospec/pull/319
