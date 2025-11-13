@@ -52,9 +52,10 @@ This implies we need to make **two** precisely formatted commits.
 
 6.  Reintroduce the `%autochangelog` and `%autorelease` templates.
 
-7.  **Make the second commit**.  Include the `changelog` changes.  If for any reason
-    you need to start the Release from a non-standard number (e.g., 5), add the string
-    `[bump release: 5]` to the commit message.
+7.  **Make the second commit**.  Include the `changelog` change.  The `Version`
+    reset we did means that the calculated `%autorelease` is re-started from
+    `Release: 1`—if you need a different value, say 5, add the string
+    `[bump release: 5]` into the commit message.
 
 You are done!  See also an [example merge-request][mr].
 
@@ -115,7 +116,7 @@ $ git diff
 Please note the `release_number = 5` line and the version-release of the last
 `%changelog` entry—that's what we needed.
 
-Now, use `git checkout -p` to drop the effects of `process-distgit`.  Done.
+Now, use `git checkout -p` to reset the local Git changes (effects of `process-distgit`).  Done.
 
 [rpmautospec]: https://github.com/fedora-infra/rpmautospec
 [norpm]: https://github.com/fedora-infra/rpmautospec/pull/319
