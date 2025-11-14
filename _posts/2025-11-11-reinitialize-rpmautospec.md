@@ -54,8 +54,9 @@ This implies we need to make **two** precisely formatted commits.
 
 7.  **Make the second commit**.  Include the `changelog` change.  The `Version`
     reset we did means that the calculated `%autorelease` is re-started from
-    `Release: 1`—if you need a different value, say 5, add the string
-    `[bump release: 5]` into the commit message.
+    `Release: 1`—if you need a different value (and that's quite likely, per
+    distribution guidelines), say 5, add the string `[bump release: 5]` into the
+    commit message.
 
 You are done!  See also an [example merge-request][mr].
 
