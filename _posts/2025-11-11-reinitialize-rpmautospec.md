@@ -58,8 +58,8 @@ This implies we need to make **two** precisely formatted commits.
     `[bump release: 5]` into the commit message.
 
 8.  *Optional step*: You might want to add one more empty commit using
-    `git commit --allow-empty` to bump the Release. (This depends on your
-    distribution's policy.)
+    `git commit --allow-empty` to bump the Release and generate `%changelog`
+    entry. (This depends on your distribution's policy.)
 
 You are done!  See also an [example merge-request][mr].
 
